@@ -6,6 +6,8 @@
 
 # STUDY
 1. GITHUB 간단 사용법
+github 파일을 다운받아서 관리할 수 있는 디렉토리로 간다.
+
 
 git clone ~@~.io
 
