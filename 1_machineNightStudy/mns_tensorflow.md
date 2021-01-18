@@ -51,7 +51,7 @@ import pandas as pd
 
 model,fit(독립, 종속, epochs=10)
 
-[//10번](//10번) model을 반복해라
+// 10번을 model을 반복해라
 
 // LOSS가 0에 가까워질 수록, 학습이 잘 된 것이다.
 
