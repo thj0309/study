@@ -1,4 +1,6 @@
-# ubuntu 18.04
+# blog in github
+
+ubuntu 18.04
 
 git install
 
@@ -10,4 +12,7 @@ cf) if ruby is not installed on the computer, please install ruby.
 apt install ruby
 
 
-DF
+https://theorydb.github.io/envops/2019/05/03/envops-blog-github-pages-jekyll/
+https://blog.naver.com/icet25/221856866810
+https://blog.naver.com/blue_eunmi/222062464798
+
