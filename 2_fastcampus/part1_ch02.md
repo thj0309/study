@@ -16,8 +16,8 @@ https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/pyt
 
 02. Numpy, Pandas와 친해지기 (feat. Tensor)
 github 
-
-
+https://github.com/thj0309/thj0309.bigdata.github.io/blob/main/2_fastcampus/1_02_02_pandas.ipynb
+https://github.com/thj0309/thj0309.bigdata.github.io/blob/main/2_fastcampus/1_02_02_numpy.ipynb
 
 03. 
 
