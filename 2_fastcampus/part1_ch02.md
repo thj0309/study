@@ -299,18 +299,165 @@ Tensor는 3차원 이상의 데이터를 활용하는 방법을 가르쳐줌.
 
 
 04. MovieLens 데이터 분석 1 (유저, 영화, 평점 데이터 분석)
+05. MovieLens 데이터 분석 2 (영화 정보)
+
 영화 평점과 관련된 dataset (추천시스템에서 많이 활용함)
 numpy와 pandas를 활용하여 'MovieLens' dataset를 핸들링하는 것을 이해할 수 있음.
 (0) 데이터 수로 small datas / full dataset으로 나누어 제공함. (https://grouplens.org/datasets/movielens/)
 
+* 파일 불러오기 (google colab 기준)
+
+from google.colab import drive
+
+drive.mount('/content/drive')
+
+path = '/content/drive/MyDrive/Colab Notebooks/fastcampus/data/movielens/'
+
+os.listdir(path) <-- 폴더 내 파일 조회
+
+ratings_df = pd.read_csv(os.path.join(path + 'ratings.csv'), encoding='utf-8')
+
+tags_df = pd.read_csv(os.path.join(path + 'tags.csv'), encoding='utf-8')
+
+movies_df = pd.read_csv(os.path.join(path + 'movies.csv'), index_col='movieId', encoding='utf-8')
 
 
-05. MovieLens 데이터 분석 2 (영화 정보)
+print(ratings_df.shape)
+
+--> (100836, 4)
+
+print(ratings_df.head())
+
+-->    userId  movieId  rating  timestamp
+0       1        1     4.0  964982703
+1       1        3     4.0  964981247
+2       1        6     4.0  964982224
+3       1       47     5.0  964983815
+4       1       50     5.0  964982931
+
+
+* 평점 데이터의 기초 통계량
+
+n_unique_users = len(ratings_df['userId'].unique())
+
+print(n_unique_users)
+
+--> 610
+
+print('평점의 평균 : ', ratings_df['rating'].mean())
+
+--> 평점의 평균 :  3.501556983616962
+
+print('평점의 표준편차 : ', ratings_df['rating'].std())
+
+--> 평점의 표준편차 :  1.0425292390605359
+
+ratings_df.info()
+
+--> <class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100836 entries, 0 to 100835
+Data columns (total 4 columns):
+     Column     Non-Null Count   Dtype  
+---  ------     --------------   -----  
+ 0   userId     100836 non-null  int64  
+ 1   movieId    100836 non-null  int64  
+ 2   rating     100836 non-null  float64
+ 3   timestamp  100836 non-null  int64  
+dtypes: float64(1), int64(3)
+memory usage: 3.1 MB
+
+
+ratings_df.describe()
+
+--> 
+userId	movieId	rating	timestamp
+count	100836.000000	100836.000000	100836.000000	1.008360e+05
+mean	326.127564	19435.295718	3.501557	1.205946e+09
+std	182.618491	35530.987199	1.042529	2.162610e+08
+min	1.000000	1.000000	0.500000	8.281246e+08
+25%	177.000000	1199.000000	3.000000	1.019124e+09
+50%	325.000000	2991.000000	3.500000	1.186087e+09
+75%	477.000000	8122.000000	4.000000	1.435994e+09
+max	610.000000	193609.000000	5.000000	1.537799e+09
+
+* 데이터 중 nan가 있는지 확인한다
+
+ratings_df.isnull().sum()
+
+--> userId       0
+movieId      0
+rating       0
+timestamp    0
+dtype: int64
+
+* historgram 그리기
+
+ratings_df[['userId', 'movieId', 'rating']].hist()
+
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x7ff71ff42c18>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x7ff7200ddef0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x7ff7200a1198>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x7ff7200d5400>]],
+      dtype=object)
+
+* pandas의 groupby 사용하기
+
+ratings_df.groupby(['userId', 'rating']).size() <-- userId와 rating을 기준으로 기초 통계량
+
+* dataframe 만들기
+
+userid_rating_df = pd.DataFrame({'count': ratings_df.groupby(['userId', 'rating']).size()})
+userid_rating_df = userid_rating_df.reset_index()
+userid_rating_df.head(10)
+
+user_info = ratings_df.groupby('userId')['movieId'].count()
+
+
+* 시각화 패키지
+
+import seaborn as sns
+
+sns.distplot(user_info.values)
+
+
+* user가 평균적으로 준 평점과 평준을 준 영화의 수
+stats_df = pd.DataFrame({
+    'movie_count' : ratings_df.groupby('userId')['movieId'].count(),
+    'rating_avg' : ratings_df.groupby('userId')['rating'].mean(),
+    'rating_std' : ratings_df.groupby('userId')['rating'].std()
+})
+
+print(stats_df.shape)
+print(stats_df.head())
+
+* rating이 많은 영화 (다시 말해, 사람들이 관심이 많은 영화) 많이 본 영화일 수록, 평점이 좋다?
+
+movieid_user_df = pd.DataFrame({
+    'num_users_watch' : ratings_df.groupby('movieId')['userId'].count(),
+    'avg_ratings' : ratings_df.groupby('movieId')['rating'].mean(),
+    'std_ratings' : ratings_df.groupby('movieId')['rating'].std()
+})
+
+movieid_user_df = movieid_user_df.reset_index()
+print(movieid_user_df.shape)
+print(movieid_user_df.head(10))
+
+--> std 표준편차가 작으면 작을 수록, 값의 범위가 좁아지고
+--> std 표준편차가 크면 클 수록, 값의 범위는 커진다
+
+movieid_user_df.sort_values(by='num_users_watch', ascending=False)
+--> (중요) nan이 있는 경우, 결측치 값은 제외할 것이지 포함할 것인지 고민 필요
+
+
+주어진 데이터는 구조화 되어있기 때문에, 데이터 관계를 이해하고 쿼리를 만드는 것과 유사함. 다만 문법이 익숙하지 않아 많은 연습이 필요함
+
+
 
 
 
 06. 행렬이 없다면 추천이 가능했을까?
 
+행렬에 대한 기본적인 설명. 
 
 
 
