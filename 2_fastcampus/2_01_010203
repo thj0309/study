@@ -39,8 +39,45 @@ like/dislike, ratings, 댓글, 관심 등을 통해 취향 등으 뽑아낸다.
 
 04. 근접이웃추천 알고리즘(K-Nearest Neighbor, KNN)
 
-데ㅌ이
-터
+데이터(아이템 또는 유저)로부터 거리가 가까운 k개의 다른 데이터를 선택하는 알고리즘. 주로 ‘유클리드’ 등 거리 계산을 활용함.
+
+회귀(Regression)의 knn 알고리즘
+객체의 특성 값이며, 이 값은 k개의 nearest neighbor값들의 평균
+ex) f(n)과 f(n+1)의 평균을 구해 줄을 이어가며 예측선을 구한다.
+
+분류(classification)의 knn 알고리즘 = supervised learning
+소속된 항목(label)을 출력하며, k개의 nearest neighbor 중 과반수로 분류
+ex) 평면 상, 새로운 데이터가 들어온다. 새로 들어온 데이터는 기존 평면 상의 데이터와의 유클리드 거리 계산을 통해 거리를 측정한다. 그 이후, 새로운 점에서 k개를 선정하여 neighbor를 만들고, 다수결의 레이블로 선정한다.
+
+
+특징 (k값 - hyperparameter)
+k는 과반수를 선택해야하기 때문에, 주로 홀수로 하는 것이 일반적.
+
+model-based가 아닌 lazy model. 따로, 학습이 없이 단순 계산을 하는 알고리즘.
+k값에 따라, overfit or underfit 이 발생하며, 과도한 정규화로 데이터 label 특성 반영이 어려움.
+
+장점 : 훈련이 없어 빨리 학습할 수 있고, 수치 기반 데이터에서 우수하다. 너무 단순하고 효율적이다.
+
+단점 : 명목(nominal), 더미(dummy) 데이터 처리가 매우 어렵다. 변수가 많아질 수록 처리 속도가 느리고 정확도가 떨어진다.
+또한, 적절한 k값 선택이 어렵다. (overfit or underfit 가능성 발생)
+무엇보다도, 스케일을 고려하지 않기 때문에 단순 비교가 어렵다.
+
+
+knn 구현에 앞서 고려해야할 부분
+첫 번째로, 변수 간의 분포가 다를 수 있으므로 데이터 정규화가 필요하다.
+ex) Z-Score, Min-Max Normalization 등
+
+두 번째로, 데이터 간의 거리 측정 효율화
+ex) Locality Sensitive Hashing, Network based Indexer 등
+
+세 번째로, 공간 상의 데이터의 representation 상태를 확인한다. (첫 번째와 유사)
+다른 모델에 비해 outlier의 특징이 가능함. 전체적으로 데이터가 주어진 공간 속에서 데이터 특성에 따라 위치와 거리가 적절하게 분포되어있어야만한다.
+
+
+05. 나이브베이즈 추천 알고리즘
+
+
+
 
 
 
