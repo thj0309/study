@@ -1,32 +1,43 @@
-* 컨텐츠기반 추천시스템이란?
+01. 컨텐츠기반 추천시스템이란?
 
 컨텐츠가 비슷한 아이템을 추천하다. 예르 들어, 사용자가 과거 경험했던 아이템 주 비슷한 아이템을 '현 시점'에 추천한다.
 information retrieval과 ml의 중간 지점. 정보(아이템)을 찾는 과정과 과거 정보를 활용햇 유저의 성향을 배우는 문제.
 cf) 예를 들어, 유저A가 높은 평점을 주거나 큰 관심을 가지는 아이템 x와 유사한 아이템 y를 추천한다.
 
 
-* 어떤 컨텐츠를 추천할까?
+02. 어떤 컨텐츠를 추천할까?
+우선, 컨텐츠와 유저 프로필을 파악한다. 파악하는 방법으 수치화 등 정량화하여 비교할 수 있도록 만든다.
 
 Item profiling / User Profiling
 
-- Item Representation
+- Item Representation : Feature extraction -> Vector Representation
 Item profile은 여러 특성들을 나타내며, 이를 정량화해서 사용한다.
 구성된 목록 등을 바탕으로 가중치를 부여한다.
-ex) attributes, features르 가진다.
+ex) attributes, features를 가진다.
 item 설명은 text features이므로, text 전처리를 통해 특징을 얻어낸다.
 
 features extraction : 유저의 관심사를 나타내는 많은 정보를 얻고, 만족스러운 추천 결과로 이어진다.
 ex) 영화, 음악, 뉴스 등 다양한 feature들을 활용하여 특징을 추출하고 vector화 한다.
 
+item profiling = vector representation ex) onehot vector, dataframe 등으로함.
 
 - User Profile : 평소 사용자의 행동이나 관심을 통해 취향을 얻어낸다. like) 분류 문제와 유사하다
 like/dislike, ratings, 댓글, 관심 등을 통해 취향 등으 뽑아낸다.
 
 
 
-* 비슷한 컨텐츠를 찾는 방법
+03.  비슷한 컨텐츠를 찾는 방법
 
 유클리드 거리 : 두 점 사이의 거리를 계산할 때, 사용하는 evaluation metric
 여러 차원을 갖는 점과 점 사이의 거리를 계산할 수 있다. (거리 기반의 유사도 측정 방법)
+
+코사인 유사도 : 벡터를 비교할 때, 주로 사용.
+예를 들어, vector A와 vector B 사이의 각도로 계산하며, -1 ~ 1 범위의 값을 가지고 -1은 완전한 반대, 0은 서로 독립, 1은 완전히 같은 경우다.
+
+주로, 단순하게 점과 점 사이의 거리만 측정하는 경우 유클리드를 쓰고, 벡터 사이의 각도만을 측정하 때는 코사인 유사도를 쓴다.
+
+
+04. 근접이웃추천 알고리즘(K-Nearest Neighbor)
+
 
 
