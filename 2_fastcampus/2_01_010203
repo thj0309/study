@@ -111,6 +111,34 @@ ex) laplace smoothing을 활용한다.
 
 
 
+06. TF-IDF 란? Vector Representation 
+
+TF-IDF
+흔하게 등장하는 단어는 중요하지 않은 단어. Information Retrieval에서 많이 사용하는 개념이다. 각 단어에 가중치를 부여해서 keyword extraction 등에 활용한다. 문서에서 특정 단어가 등장하는 것으로 문서끼리 관련있음을 표현한다.
+
+TF(Term Frequency) : 단어(word) w가 문서(Document) d에 등장하는 빈도수.
+즉, 해당 단어가 해당 문서에 얼마나 자주 등장하는지 체크
+
+DF() : 단어(word) w가 등장한 문서(Document) d의 수
+즉, IDF는 해당 단어가 얼마나 다른 문서에 비해 해당 문서에서 특별한지 체크
+
+N : 전체 문서의 수
+
+TF(w, d) = 문서 내 단어 w의 수 / 문서 내 모든 단어의 수
+IDF(w) = log ( 전체 문서의 수 (n) / 단어 w가 포함된 문서의 수(DF(w)))
+if ‘단어 w가 포함된 문서의 수 = 전체 문서의 수’ then TF-IDF(w,d) = 0.
+즉, 단어 w의 정보력은 없다.
+
+
+DF가 큰 단어는 정보력이 없다. 말뭉치(Corpus)는 흔히 등장하기 때문에 필요 없다. 보통, 조사나 관사 등이 해당된다. 이 것들은 유사도 계산에서도 제외해야만 한다.
+
+
+
+
+
+
+
+
 
 
 
