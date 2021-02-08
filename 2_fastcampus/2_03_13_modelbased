@@ -23,6 +23,8 @@ Association Rule mining, Matrix Factorization(SVD, ALS), Probabilistic Models �
 
 Sparse한 데이터셋에서 비어있는 값을 예측하는 경우가 많습니다.
 
+
+
 Chapter 03. 14. Rule-Based 협업필터링 (Feat. Association Rule)
 상호 연관관계. 데이터 속에서 상호 연관관계를 찾을 수 있다.
 
@@ -61,6 +63,27 @@ lift(A -> B) < 1 : 상호대체 --> A와 B는 반비례
 lift(A -> B) > 1 : 상호보완 --> A와 B는 정비례
 lift(A -> B) = 1 : 독립     --> A와 B는 서로 영향을 주지 않는다.
 
+ex) Association Rule Mining 예시
+# 표1
+USERID	Movies Watched
+1	      A, B, C
+2	      A, C
+3	      A, D
+4	      B, E, F
+5	      B, C, D
+
+# 표2
+(frequent) Pattern	Support
+A	                  3/5 = 0.6
+B	                  3/5 = 0.6
+A, C	              2/5 = 0.4
+B, C	              2/5 = 0.4
+
+Que) A-> C
+1. support(A -> C) = 0.4
+2. support(A) = 0.6
+3. confidence = support(A->C) / support(A) = 0.67
 
 
+Chapter 03. 15. Latent Factor Model 그리고 Matrix Factorization
 
