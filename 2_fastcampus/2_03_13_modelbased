@@ -14,11 +14,53 @@ Chapter 03. 13. 이웃기반 vs 모델기반은 무슨 차이일까?
 첫 번째로, 수많은 데이터로 구성된 행렬보다 압축된 형태로 저장합니다.
 두 번째로, 데이터 전처리와 학습과정으로 미리 모델을 준비합니다. 즉, 준비된 모델로 예측합니다.
 세 번째로, 데이터를 다양하게 학습할 수 있으며, 새로운 추천을 할 수 있습니다.
-네 번째로, Sparese data 형태의 데이터셋에서도 유리합니다. 아이템 간 데이터 중 사용 가능한 데이터가 적을 경우, 이웃기반에서는 추천이 어렵지만, 모델기반에서는 쉽게 새로운 추천이 가능합니다.
+네 번째로, Sparese data 형태의 데이터셋에서도 유리합니다.
+아이템 간 데이터 중 사용 가능한 데이터가 적을 경우, 이웃기반에서는 추천이 어렵지만, 모델기반에서는 쉽게 새로운 추천이 가능합니다.
 다섯 번째로, 공통의 유저나 아이템이 선택된 데이터를 확보하기 어렵다.
 
 모델 기반 협업 필터링의 종류는
 Association Rule mining, Matrix Factorization(SVD, ALS), Probabilistic Models 등이 있습니다.
 
 Sparse한 데이터셋에서 비어있는 값을 예측하는 경우가 많습니다.
+
+Chapter 03. 14. Rule-Based 협업필터링 (Feat. Association Rule)
+상호 연관관계. 데이터 속에서 상호 연관관계를 찾을 수 있다.
+
+
+데이터의 모델 : 데이터의 관계, 접근과 흐름 파악을 위한 추상화된 모형. 데이터 구조 결정.
+데이터의 여러 특징을 파악해서 모형화하여 모델링합니다.
+데이터 간의 연관 법칙을 찾는 data mining 기법 중 하나입니다.
+기존 데이터를 기반으로 Association Rule(연관 규칙)을 만듭니다.
+
+
+Association Rule Mining
+- 정의 : Minimum Support와 Minimum Confidence 값은 넘는 Rule 찾는 과정입니다.
+데이터에서 흥미로운 관계를 찾는 Rule-based Machine Learning 기법 중 하나입니다.
+
+- Support(지지도) : 데이터 관계 설정을 위해 아이템이 동시에 발생활 확률. 전체 데이터 중 규칙 (A, B)를 포함하는 데이터 비율.
+
+식 : support(A -> B) = # of (A와 B의 교집합) / # of data(rows)
+support는 0과 1 사이 값이다. 1에 가까울 수록, A와 B 관계가 중요하다.
+                          반면, 0에 가까운 연관관계는 먼저 제거한다. 자주 발생하지 않기 때문이다.
+                          cf) support(A -> B)는 support(B -> A)와 다르다.
+
+- Confidence(신뢰도) : 특정 아이템 A가 선택된 상태에서 다른 아이템 B를 선택할 확률. (A, B)의 관계를 가정하고, A를 선택한 사람이 B를 선택할 비율.
+
+식 : confidence(A -> B) = # of (A와 B의 교집합) / # of A
+   confidence 역시 0과 1 사이다. A를 선택했을 때, B를 선택할 확률이다.
+   1에 가까울 수록 A는 B에 많은 영향을 받는다. minimum support 중 가장 큰 confidence를 선택한다.
+   cf)  support(A -> B)는 support(B -> A) 사이의 관계 파악이 가능하다.
+   
+
+- Lift(향상도) : (A, B)의 관계를 직접적으로 나타내는 measurement. 1보다 크면, 이어서 B를 선택할 확률이 높고, 1보다 작으면 확률이 높지 않다.
+
+식 : lift(A -> B) = confidence(A -> B ) / support(B) = # of (A와 B의 교집합) / # of A
+
+0과 1 사이의 확률값이 아닌 A와 B 사이의 관계를 파악하는 용도로 사용한다.
+lift(A -> B) < 1 : 상호대체 --> A와 B는 반비례
+lift(A -> B) > 1 : 상호보완 --> A와 B는 정비례
+lift(A -> B) = 1 : 독립     --> A와 B는 서로 영향을 주지 않는다.
+
+
+
 
