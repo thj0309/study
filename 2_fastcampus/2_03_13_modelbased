@@ -86,4 +86,14 @@ Que) A-> C
 
 
 Chapter 03. 15. Latent Factor Model 그리고 Matrix Factorization
+Latent Factor Model은 잠재된 Pattern 요소를 찾아 요약하는 모델링.
+사용자와 아이템 특성 간의 복잡한 관계를 학습하여, factor 형태로 나타낸다.
+이때, 같은 vetor 공간에 표현된다.
+같은 vector 공간에서 사용자와 아이템이 가까우면 유사하고, 멀리 떨어져있으면 유사하지 않는다.
+
+Singular Value decomposition (특이값 분해)
+https://ko.wikipedia.org/wiki/%ED%8A%B9%EC%9E%87%EA%B0%92_%EB%B6%84%ED%95%B4
+
+
+
 
