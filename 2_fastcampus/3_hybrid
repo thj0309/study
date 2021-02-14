@@ -35,3 +35,20 @@ Context-Aware Recommendation System 정리해봅니다.
 context정보를 얻는 방법은 다양합니다. 예를 들어, 접속한 기기, 평점을 준 이벤트 정보, 날씨 정보 등입니다.
 
 
+Chapter 03. Contextual pre-filtering & Contextual Post-filtering
+
+추천 시스템에서 Contextual information의 대표적인 사례는 spotify music 이다.
+contextual factor는 explicit 혹은 implicit 하다. 또한, 시간의 흐름에 따라 변할수도(dynamic) 그대로(static)할 수 있다.
+
+contextual information을 적용하는 경우는 3가지 정도가 있다.
+첫 번째로, contextual pre-filtering. 처음 데이터를 filtering. context 정보를 기준으로 user 혹은 item으로 나눌 수 있다.
+두 번째로, contextual post-filtering. user, item, contextual information 등 다양한 features로 모델링을 진행한다. 모델의 추천 결과에 context 정보를 얹어 filtering하는 기법이다.
+마지막으로, contextual modeling. context 정보 자체를 모델링에 활용하는 기법이다. complex한 방법으로 머신러닝 등 활용이 가능하다.
+
+
+Chapter 04. LARS : Location-Aware Recommender System.
+LARS : A Location-Aware Recommender System.
+추천을 하기 위해 위치 기반 정보를 활용한다.
+ex) 대한민국 내 
+
+
