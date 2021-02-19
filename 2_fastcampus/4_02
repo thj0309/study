@@ -13,3 +13,11 @@ Chatper 02. Image-based Recommendation on Styles on Substitutes
 
 이 논문의 주 목적은 인간의 시각적 선호도를 모델링하여, 사용자가 기존 선택과 유사한 다른 것에 대한 명백환 관심을 표현하는 것을 바탕으로 아이템을 추천하는 것이다.
 
+
+Chapter 03. 음악 취향 (spotify)
+논문) https://papers.nips.cc/paper/2013/file/b3ba8f1bee1238a2f37603d90b58898d-Paper.pdf
+
+이 논문의 주 목적은 인간의 청각적 선호도를 모델링하여, 사용자가 기존 선택과 유사한 다른 것에 대한 명백환 관심을 표현하는 것을 바탕으로 아이템을 추천하는 것이다.
+
+
+나머지는 학습중..
