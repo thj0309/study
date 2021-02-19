@@ -1,0 +1,55 @@
+Chapter 01. Session-based Recommendation with RNN
+
+RNN을 추천시스템에 적용한다.
+
+기존까지는 대부분의 session-based 추천 시스템은 간단하게 사용해왔다.
+단순하게 item 간 유사도 정도 사용했고 이커머스 등 session-based 에서는 추천이 어려웠다.
+
+RNN을 활용하는 순간, session-based에서 활용이 가능하다. (rnn의 시퀀스한 기능으로 인하여)
+
+예를 들어, 웹 사이트 유저 패턴을 보면
+    input은 사용자가 웹사이트에 접속 시 첫 번째 클릭이다.
+    이전 클릭에 따라 사용자는 다음 클릭을 연이어서 진행한 것은 output이 된다.
+    위의 click-stream 데이터셋을 활용하는데, 데이터의 사이즈와 범용성이 매우 중요하다.
+    
+이 알고리즘에는
+세선 병행 미니 배치 (https://www.researchgate.net/profile/Alexandros_Karatzoglou/publication/284579100/figure/fig2/AS:614315157631010@1523475555939/Session-parallel-mini-batch-creation.png)
+, 미니 배치 기반 아웃풋 (매 step 별로 모든 item에 대해서 점수를 계산하는 것이 비효율적이니, 아이템 중 선택하여 점수를 계산하는 것이 효율이 높다)
+, 랭킹 로스 함수의 방법 (3가지 방법이 있음. potinwise-모든 아이템에 점수를 매김. pairwise-선택한 아이템에 비중을 높게 주는 방법. likewise-모든 아이템에 점수와 랭킹을 부여한 후 비교하는 방법 // 보통 pairswise가 성능이 가장 좋다)
+이 필요하다.
+
+
+이외에도) bert4rec에서도 활용가능합니다.
+bert는 language model에서 다음 item을 예측할 때 활용 가능한데, 이는 sequencial한 로직 때문에 사용 가능합니다.
+참고 이미지) https://d3i71xaburhd42.cloudfront.net/690edf44e8739fd80bdfb76f40c9a4a222f3bba8/3-Figure1-1.png
+
+
+Chapter 02. 넷플릭스와 유튜브의 추천 feat. 논문
+유튜브.. 수많은 사용자한테 개인화된 컨텐츠 추천을 해야하는 책임과 의무가 있는 사이트..
+상당한 양을 보유하고 있으며 동시에 수많은 양이 생성되고 있다. 또한, 부적절한 영상도 많이 보유하고 있다.
+그 중에서 적절한 추천을 위해서는 수많은 연구를 해왔고 이를 기반으로 하는 서비스는 매일 개선되고 있다.
+
+우선, 추천 후보군과 비교 순위로 나눌 수 있다.
+
+추천 후보군(candidate generation) 에서는 input은 사용자의 히스토리, output은 사용자의 히스토리 기반으로 하여 관련있을만한 영상집합이다. 협업필터링을 사용하고 시청기록, 검색키워드 등을 활용한다.
+참고 image - Candidate Generation) https://i.stack.imgur.com/9zhaI.png
+참고 image - Label and Context Selection) https://image.slidesharecdn.com/deepneuralnetworkforyoutuberecommendations-170613150558/95/deep-neural-network-for-youtube-recommendations-13-638.jpg?cb=1497366466
+
+비교 순위(ranking model) : 영상과 사용자 features로 각 영상에 대해 점수를 매긴다.
+
+이 알고리즘에 대한 참고 사이트) https://www.slideshare.net/lekaha/deep-neural-network-for-youtube-recommendations
+
+결론. 수많은 features (아이템과 사용자) 속에서도 위와 같은 알고리즘으로 개인화된 추천을 할 수 있도록 한다.
+하지만, 이 알고리즘은 지금 시점에서 최적이므로, 앞으로 생성되는 데이터에 적절하지 못할 수 있다.
+그래서 항상 데이터를 바탕으로 분석하고 보완하고 있기 때문에 구글이나 유튜브가 이 시장에서 절대적인 위너가 될 수 밖에 없다고 생각한다.
+
+
+----------------
+마지막 정리.. 지금까지 배운 내용을 정리하는 과정.
+
+
+
+
+
+
+
