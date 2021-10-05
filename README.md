@@ -44,3 +44,21 @@ git pull
 https://colab.research.google.com/drive/1EDoEhGHZvOPd3qztMBKYzu6SWLf5i6rA#scrollTo=mQ2oE12aSplV
 
 
+
+##  git 설치
+https://git-scm.com/download/win
+
+## git 버전확인
+git --version
+
+## 사용자 설정
+git config --global user.name "thj0309"
+git config --global user.email thj0309@gmail.com
+cf) global은 전역에서 사용하는 의미이다.
+
+## 사용자에 대한 정보 확인
+git config --list
+
+## git으로 관리하고자 하는 폴더로 이동
+git init
+
